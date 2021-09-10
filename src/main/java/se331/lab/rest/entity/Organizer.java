@@ -19,7 +19,7 @@ public class Organizer {
     Long id;
     String name;
     @OneToMany(mappedBy = "organizer")
-    
+
     @Builder.Default
     List<Event> ownEvents = new ArrayList<>();
 }
