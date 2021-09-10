@@ -52,7 +52,5 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .petAllowed(true)
                 .build());
     }
-    public interface OrganizerRespository extends JpaRepository<Organizer,Long>{
 
-    }
 }
