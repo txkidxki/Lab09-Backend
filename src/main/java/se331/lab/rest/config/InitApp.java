@@ -10,6 +10,8 @@ import se331.lab.rest.entity.Organizer;
 import se331.lab.rest.repository.EventRepository;
 import se331.lab.rest.repository.OrganizerRespository;
 
+import javax.transaction.Transactional;
+
 @Component
 public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
     @Autowired
@@ -17,6 +19,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
     @Autowired
     OrganizerRespository organizerRespository;
     @Override
+    @Transactional
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
 
         Organizer org1,org2,org3;
@@ -47,8 +50,8 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .time("8.00am-4.00 pm.")
                 .petAllowed(false)
                 .build());
-        tempEvent.setOrganizer(org2);
-        org2.getOwnEvents().add(tempEvent);
+        tempEvent.setOrganizer(org1);
+        org1.getOwnEvents().add(tempEvent);
         tempEvent = eventRepository.save(Event.builder()
                 .category("Cultural")
                 .title("Loy Krathong")
@@ -58,8 +61,8 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .time("8.00-10.00 pm.")
                 .petAllowed(false)
                 .build());
-        tempEvent.setOrganizer(org3);
-        org3.getOwnEvents().add(tempEvent);
+        tempEvent.setOrganizer(org2);
+        org2.getOwnEvents().add(tempEvent);
         tempEvent = eventRepository.save(Event.builder()
                 .category("Cultural")
                 .title("Songkran")
@@ -69,5 +72,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .time("10.00am - 6.00 pm.")
                 .petAllowed(true)
                 .build());
+        tempEvent.setOrganizer(org3);
+        org3.getOwnEvents().add(tempEvent);
     }
 }
