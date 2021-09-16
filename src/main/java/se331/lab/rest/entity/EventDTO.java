@@ -22,8 +22,5 @@ public class EventDTO {
     String date;
     String time;
     Boolean petAllowed;
-    @ManyToOne
     EventOrganizerDTO organizer;
-    @ManyToMany(mappedBy = "eventHistory")
-    List<Participant> Participants;
 }
