@@ -3,6 +3,7 @@ package se331.lab.rest.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -10,6 +11,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Participant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,5 +20,6 @@ public class Participant {
     String name;
     String telNo;
     @ManyToMany
-    List<Event> eventHistory;
+    @Builder.Default
+    List<Event> eventHistory = new ArrayList<>();
 }
